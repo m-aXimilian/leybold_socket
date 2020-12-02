@@ -1,27 +1,15 @@
 #include <websocket_initialize.h>
-/*
-#include <toml/toml.hpp>
+
+#include <memory>
 
 
-#include <iostream>
-#include <string>
-*/
 int main(int argc, char* argv[]){
-    /*
-   
-    const toml::table config_file = toml::parse("config/websocket_server.toml");
     
+    web::ConfigureSocket configure_hanler;
 
-    const auto& address = toml::get<toml::table>(config_file.at("address"));
+    configure_hanler.ConfigreFromTomlFile("config/websocket_server.toml");
 
-    const auto ip_address = toml::get<std::string>(address.at("ip"));
-    const auto port_address = toml::get<std::string>(address.at("port"));
-
-    std::cout<<"configured address:\t"<<ip_address<<":"<<port_address<<std::endl;
-*/
-
-    auto address = web::InitAddressing("./config/websocket_server.toml");
-
-    std::cout<<address.first<<":"<<address.second<<std::endl;
+    std::cout<<configure_hanler.ip_address()<<":"<<
+        configure_hanler.port()<<std::endl;
 
 }

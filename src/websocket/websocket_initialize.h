@@ -1,6 +1,8 @@
 #ifndef WEBSOCKET_INITIALIZE
 #define WEBSOCKET_INITIALIZE
 
+#include <configuration_manager.h>
+
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/beast/core.hpp>
 #include <boost/filesystem.hpp>
@@ -21,11 +23,32 @@ namespace web{
 
 namespace beast = boost::beast;
 namespace fs = boost::filesystem;
+namespace http = boost::beast::http;
+namespace net = boost::asio;
 namespace toml = cpptoml;
 
 
-std::pair<std::string, std::string> InitAddressing(fs::path);
+//std::pair<std::string, std::string> InitAddressing(fs::path);
 
-}
+class ConfigureSocket : public conf::ConfigurationManager{
+    public:
+
+        ConfigureSocket()
+        {};
+        virtual ~ConfigureSocket()
+        {};
+
+        void ConfigreFromTomlFile(fs::path) override;
+
+        inline net::ip::address ip_address(){ return ip_address_; } 
+        inline uint16_t port(){ return port_; } 
+
+    private:
+
+        net::ip::address ip_address_;
+        uint16_t port_;
+};
+
+} // namespace web
 
 #endif //WEBSOCKET_INITIALIZE
