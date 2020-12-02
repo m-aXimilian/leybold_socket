@@ -1,1 +1,0 @@
-/usr/bin/c++  -Wall -lstdc++fs -std=c++17   CMakeFiles/websockt.dir/src/websocket/websocket_handler.cc.o CMakeFiles/websockt.dir/src/websocket/websocket_initialize.cc.o  -o websockt 
