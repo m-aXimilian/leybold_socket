@@ -26,6 +26,7 @@ namespace fs = boost::filesystem;
 namespace http = boost::beast::http;
 namespace net = boost::asio;
 namespace toml = cpptoml;
+namespace websocket = beast::websocket;
 
 
 //std::pair<std::string, std::string> InitAddressing(fs::path);
@@ -44,7 +45,8 @@ class ConfigureSocket : public conf::ConfigurationManager{
         inline uint16_t port(){ return port_; } 
 
     private:
-
+        
+        //tcp::socket tcp_socket_;
         net::ip::address ip_address_;
         uint16_t port_;
 };
